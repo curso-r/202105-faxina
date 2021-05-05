@@ -1,6 +1,15 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
+<div class="figure">
+
+<img src="https://raw.githubusercontent.com/allisonhorst/stats-illustrations/master/rstats-artwork/tidydata_3.jpg" alt="Imagem de Allison Horst." width="80%" />
+<p class="caption">
+Imagem de Allison Horst.
+</p>
+
+</div>
+
 ## Informações importantes
 
 -   [Clique
