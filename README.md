@@ -10,6 +10,16 @@ Imagem de Allison Horst.
 
 </div>
 
+> Quando trabalhamos com dados tidy (arrumados), podemos utilizar as
+> **mesmas ferramentas**, de formas **similares**, em bases de dados
+> diferentes…
+
+> … porém, quando trabalhamos com bases de dados untidy (desarrumadas),
+> muitas vezes precisamos **reinventar a roda**: desenvolvemos uma
+> solução que muitas vezes é difícil de **iterar ou reutilizar**.
+
+– (tradução livre, thanks to [Beatriz Milz](beatrizmilz.com/))
+
 ## Informações importantes
 
 -   [Clique
