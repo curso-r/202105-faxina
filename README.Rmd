@@ -7,80 +7,126 @@ output: github_document
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  echo = FALSE
 )
 
 library(magrittr)
 
 main_repo <- "main-faxina"
 turma <- "202105-faxina"
+num_aula <- 1
 ```
 
-## Configuração inicial
+## Informações importantes
 
-#### Passo 1: Instalar pacotes
+- [Clique aqui](https://github.com/curso-r/main-faxina/raw/master/material_do_curso.zip) para baixar o material do curso.
 
-```{r, eval=FALSE}
-install.packages("remotes")
+- Os **pacotes necessários** no curso e o código para instalação estão disponíveis [neste link](https://curso-r.github.io/main-faxina#pacotes-necess%C3%A1rios).
 
-# instalar pacote da Curso-R
-remotes::install_github("curso-r/CursoR")
+- Nosso livro **Ciência de Dados em R**: [https://livro.curso-r.com/](https://livro.curso-r.com/)
 
-```
+- Nosso blog: [https://curso-r.com/blog/](https://curso-r.com/blog/)
 
+## Dúvidas
 
+Fora do horário de aula ou monitoria:
 
-#### Passo 2: Criar um projeto do RStudio
+- perguntas gerais sobre o curso deverão ser feitas no Classroom.
 
-Faça um projeto do RStudio para usar durante todo o curso e em seguida abra-o.
-
-```{r, eval = FALSE}
-install.packages("usethis")
-usethis::create_project("caminho_ate_o_projeto/nome_do_projeto")
-```
-
-#### Passo 3: Baixar o material
-
-Certifique que você está dentro do projeto criado no passo 2 e rode o código abaixo.
-
-**Observação**: Assim que rodar o código abaixo, o programa vai pedir uma escolha de opções. Escolha o número correspondente ao curso de Faxina!
-
-```{r, eval=FALSE}
-# Baixar ou atualizar material do curso
-CursoR::atualizar_material()
-```
+- perguntas sobre R, principalmente as que envolverem código, deverão ser enviadas no [nosso fórum](https://discourse.curso-r.com/).
 
 ## Slides
 
-```{r, echo = FALSE}
-knitr::kable(
-  tibble::tibble(
-    slide = CursoR:::list_github_files(main_repo, "slides/", "html") %>% 
-      stringr::str_subset("/img/", negate = TRUE),
-    link = paste0("https://curso-r.github.io/", main_repo, "/", slide)
-  ) %>% 
-    dplyr::filter(!stringr::str_detect(slide, "_files/"))
-  %>% 
-  dplyr::mutate(
-    slide_pdf = CursoR:::list_github_files(main_repo, "slides/", "pdf"),
-    link_pdf = paste0("<a href='https://curso-r.github.io/", main_repo, "/", slide_pdf, "'> PDF </a>")
-  ) %>% 
-    dplyr::select(-slide_pdf),
-  
-  col.names = c("Slide", "Link", "Link em PDF")
-) 
+```{r}
+tibble::tibble(
+  slide = CursoRutils:::list_github_files(main_repo, "slides/", "html"),
+  link = paste0("https://curso-r.github.io/", main_repo, "/", slide),
+  pdf = stringr::str_replace(paste0("https://curso-r.github.io/", main_repo, "/", slide), "html$", "pdf")
+) %>% 
+  dplyr::filter(!stringr::str_detect(slide, "_files/")) %>% 
+  knitr::kable()
 ```
 
-## Scripts usados em aula
+## Scripts utilizados em aula
 
-```{r, echo = FALSE}
-nome_pasta <- "exemplos_de_aula/"
-knitr::kable(
-  tibble::tibble(
-    script = list.files(nome_pasta, pattern = ".R"),
-    link = paste0("https://curso-r.github.io/", turma, "/", nome_pasta, script)
+Aqui colocamos scripts utilizados em aula que são novos ou que são versões modificadas do material básico da aula.
+
+```{r}
+pasta <- "exemplos_de_aula/"
+tibble::tibble(
+  script = list.files(pasta, pattern = ".R"),
+  link = paste0("https://curso-r.github.io/", turma, "/", pasta, script)
+) %>% 
+  knitr::kable()
+```
+
+
+## Lição de casa
+
+```{r}
+tibble::tibble(
+  nome = CursoRutils:::list_github_files(main_repo, "exercicios/"),
+  link = paste0("https://curso-r.github.io/", main_repo, "/", nome)
+) %>%
+  dplyr::filter(as.numeric(stringr::str_extract(nome, "[0-9]{2}")) <= num_aula) %>% 
+  knitr::kable()
+```
+
+## Trabalho final
+
+(em breve)
+
+## Trabalhos finais premiados
+
+(em breve)
+
+## Material extra
+
+Referências extras comentadas nas aulas.
+
+```{r, message=FALSE}
+googlesheets4::gs4_deauth()
+"1SmCKCvJBff3CVty-xYKJ4NhEo2j6sUwkdET46vQisDY" %>% 
+  googledrive::as_id() %>% 
+  googlesheets4::read_sheet(turma) %>%
+  dplyr::filter(aula <= num_aula) %>% 
+  dplyr::mutate(link = glue::glue("[{desc}]({utils::URLencode(url)})")) %>%
+  dplyr::select(-desc, -url) %>%
+  dplyr::arrange(aula) %>% 
+  knitr::kable(col.names = c("Aula", "Tema", "Descrição"))
+```
+
+
+## Dados
+
+```{r}
+pasta <- "dados/"
+tibble::tibble(
+  nome = list.files(
+    pasta, 
+    recursive = TRUE, 
+    pattern = "\\.(zip|Rds|rds|xlsx|xls|csv|json)"
+  ),
+  link = purrr::map_chr(
+    paste0("https://curso-r.github.io/", turma, "/", pasta, nome),
+    utils::URLencode
   )
-)
+) %>% 
+  knitr::kable()
 ```
+
+
+## Redes sociais da Curso-R
+
+Instagram: https://www.instagram.com/cursoo_r/
+
+Twitter: https://twitter.com/curso_r
+
+Youtube: https://www.youtube.com/c/CursoR6/featured
+
+Linkedin: https://www.linkedin.com/company/curso-r/
+
+Facebook: https://www.facebook.com/cursodeR
 
 

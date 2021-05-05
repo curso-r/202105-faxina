@@ -1,5 +1,5 @@
 ---
-title: "Faxina"
+title: "Faxina de dados"
 author: "<img src = 'https://d33wubrfki0l68.cloudfront.net/9b0699f18268059bdd2e5c21538a29eade7cbd2b/67e5c/img/logo/cursor1-5.png' width = '20%'>"
 date: ""
 output:
@@ -10,7 +10,7 @@ output:
       highlightStyle: github
       highlightLines: true
       countIncrementalSlides: false
-knit: pagedown::chrome_print      
+knit: pagedown::chrome_print
 ---
 
 ```{r, child="00-preamble.Rmd"}
@@ -62,124 +62,132 @@ knitr::include_graphics("img/jtrecenti.png")
 ```
 
 
-Doutorando em Estatística pelo IME-USP. Secretário-geral da Associação Brasileira de Jurimetria (ABJ). Conselheiro do CONFE. Sócio da Terranova Consultoria. Trabalha com web scraping, arrumação de dados, construção de modelos preditivos, APIs, pacotes em R e dashboards em Shiny.
+Doutorando em Estatística pelo IME-USP. Diretor da Associação Brasileira de Jurimetria (ABJ). Professor auxiliar no Insper. 
+
+Trabalha com web scraping, arrumação de dados, modelos preditivos, APIs, pacotes em R e dashboards em Shiny.
 
 ]
 
 
 .pull-right[
 
-### Caio Lente
+### Fernando Corrêa
 
 ```{r, echo=FALSE, out.width="30%"}
 knitr::include_graphics("img/fernando.jpeg")
 ```
 
 
-Bacharel e mestrando em Estatística pelo IME-USP. Ex-Diretor da Associação Brasileira de Jurimetria. Usa R para tudo, mas tem interesse especial em web scraping, visualização de dados e modelagem bayesiana.
+Bacharel e mestrando em Estatística pelo IME-USP. Ex-Diretor da Associação Brasileira de Jurimetria (ABJ). 
+
+Usa R para tudo, mas tem interesse especial em web scraping, visualização de dados e modelagem bayesiana.
 
 
 ]
-
----
-
-## Linha do tempo
-
-<center>
-<img src="img/linha_do_tempo.png" width = 45%></img>
-</center>
 
 ---
 
 ## Nossos cursos
 
-.pull-left[
-<div class="container center">
-  <div class="card">
-    <h2>Programação em R</h2>
-    <hr style = "background-color: #3bb44a;"/>
-    <p><a href = "https://www.curso-r.com/cursos/r4ds-1/">R para Ciência de dados I</a></p>
-        <p><a href = "https://www.curso-r.com/cursos/r4ds-2/">R para Ciência de dados II</a></p>
-        <p><a href = "https://www.curso-r.com/cursos/rcpp/">Introdução ao R com C++</a></p>
-  </div>
-</div>
-
-<br>
-
-<div class="container center">
-  <div class="card">
-    <h2>Modelagem</h2>
-    <hr style = "background-color: #996699;"/>
-    <p><a href = "https://www.curso-r.com/cursos/regressao-linear/">Regressão Linear</a></p>
-    <p><a href = "https://www.curso-r.com/cursos/intro-machine-learning/">Machine Learning</a></p>
-    <p><a href = "https://www.curso-r.com/cursos/xgboost/">XGBoost</a></p>
-    <p><a href = "https://www.curso-r.com/cursos/deep-learning/">Deep Learning</a></p>
-  </div>
-</div>
-]
-
-
-.pull-right[
-<div class="container center">
-  <div class="card">
-    <h2>Extração de dados</h2>
-    <hr style = "background-color: #eeba30;"/>
-    <p><a href = "https://www.curso-r.com/cursos/web-scraping/">Web scraping</a></p>
-  </div>
-</div>
-
-<br>
-
-<div class="container center">
-  <div class="card">
-    <h2>Comunicação e automação</h2>
-    <hr style = "background-color: #ff6699;"/>
-    <p><a href = "https://www.curso-r.com/cursos/dashboards/">Dashboards com R</a></p>
-        <p><a href = "https://www.curso-r.com/cursos/deploy/">Deploy</a></p>
-  </div>
-</div>
-]
+```{r, echo = FALSE}
+templatesR6::criar_slide_nossos_cursos()
+```
 
 ---
-class: middle, center
+class: middle, center, inverse
 
 # Sobre o curso
 
 ---
 
-# Faxina
+# Sobre o curso
 
-## Introdução
+A pessoa que trabalha com ciência de dados passa __60-80%__ do tempo na parte de tratamento de dados.
+
+Por isso, trabalhar com os dados sujos da melhor forma possível tem __grande impacto__ na realização dos projetos na prática.
+
+Faxina de dados __não é fácil__. Em parte das situações, o problema não é exatamente técnico, e sim um __problema de negócio__, na fonte geradora dos dados.
+
+O que vamos trabalhar aqui é com __ferramentas úteis__ para leitura e arrumação de dados arrumados. Faremos isso através de vários exemplos.
+
+---
+
+# Faxina no ciclo da ciência de dados
+
+```{r, echo=FALSE, out.width="80%", fig.align="center"}
+knitr::include_graphics("img/ciclo-faxina.png")
+```
+
+A faxina de dados também é conhecida como __ETL__ (Extract, Transform, Load). As definições podem variar dependendo do contexto.
+
+---
+
+# Requisitos
+
+Este curso assume que você já possui os conhecimentos do curso de [R para Ciência de Dados II](https://curso-r.com/cursos/r4ds-2/).
+
+Os requisitos mais importantes são: 
+
+- `{purrr}`: todos os tipos de `map()`.
+- `{tidyr}` e `{dplyr}`: funções básicas, integração e pivotagem.
+- `{stringr}`: funções básicas e expressões regulares.
+
+> Se sentir dificuldade em algum ponto que a gente passar rápido, pergunte!
+
+---
+
+class: middle, center, inverse
+
+# Aulas
+
+---
+
+# Dia 01
+
+## Teoria
 
 - Organização de projetos
-
 - Conceito de *tidy data*
 
+## Exemplos
+
+- Faxina de dados da SSP
+    - Problemas de encoding
+- Faxina de dados em um projeto de consultoria
+
+---
+
+# Dia 02
+
+## Teoria
+
 - Pacote `{janitor}`
-
 - Funções menos conhecidas do `{dplyr}` e do `{tidyr}`
+- Funções de leitura de dados
+
+## Exemplos
+
+- Faxina de dados em um projeto de consultoria (continuação) 
+- Leitura de dados em outros formatos
+    - PDF e OCR
+    - Json e HTML/XML
+- Leitura de dados grandes 
+    - Dados da RFB ([brasil.io](https://brasil.io))
 
 ---
 
-# Faxina
+# Dia 03
 
-## Faxina de dados para visualização
+## Teoria
 
-- Exemplo com dados públicos
+- Integração de dados
+- Detecção de inconsistências
 
-- Trabalhando com textos
+## Exemplos
 
-- Problemas de encoding
-
-- PDF e OCR
-    
----
-
-# Faxina
-
-## Faxina de dados para modelagem
-
-- Base de dados do Kaggle
+- Faxina de dados de reclamações do Sindec (Procon)
+- Fazendo um projeto completo do zero: RFB + Sindec
+- Atividades que não deu tempo de fazer
 
 ---
 
@@ -191,26 +199,30 @@ No final, você terá ...
 
 # Dinâmica
 
-- Pelo menos um exemplo prático por aula
-    - Foco: bases públicas, modelagem estatística
+- Vários exemplos prático por aula
+    - __Foco__: bases públicas, consultoria
+    - Sugira problemas do seu trabalho/pesquisa!
 
-- Exercícios para casa, com entrega facultativa
+- Exercícios para casa, com entrega facultativa.
+
+- Estaremos online 30 minutos antes das aulas para tirar dúvidas.
 
 - Trabalho final, com entrega obrigatória
-    - As pessoas que fizerem os melhores trabalhos receberão uma bolsa para fazer qualquer curso da Curso-R
-    - Mais detalhes sobre o trabalho final nas próximas aulas
+    - As 3 pessoas que fizerem os melhores trabalhos receberão uma __bolsa__ para fazer qualquer curso da Curso-R
+    - O trabalho final será definido na aula 2
 
 ---
 
 # Tirando dúvidas
 
-- **Não existe dúvida idiota**.
+- **Não existe dúvida idiota / básica demais**.
  
-- Nem sempre é trivial fazer a pergunta certa para que outra pessoa esclareça a sua dúvida. Neste curso, **vamos mostrar melhores práticas na hora de fazer perguntas sobre programação**.
+- Nem sempre é trivial fazer a pergunta certa para que outra pessoa esclareça a sua dúvida.
  
 - Fora do horário de aula ou monitoria:
-  - perguntas gerais sobre o curso deverão ser feitas no Classroom.
-  - perguntas sobre R, principalmente as que envolverem código, deverão ser enviadas no [nosso discourse](https://discourse.curso-r.com/). Se envolver web scraping, é importante especificar a página que está querendo acessar e como você faria para encontrá-la manualmente.
+  - Perguntas gerais sobre o curso devem ser feitas no Classroom.
+  - Perguntas sobre R, principalmente as que envolverem código, devem ser enviadas no [nosso discourse](https://discourse.curso-r.com/). 
+  - Como os códigos de faxina de dados costumam ser extensos e envolvem dados grandes, tente criar um exemplo reprodutível pequeno do seu problema.
 
 - [Veja aqui dicas de como fazer uma boa pergunta](https://discourse.curso-r.com/t/como-escrever-uma-boa-pergunta/542).
 
@@ -225,4 +237,7 @@ No final, você terá ...
 
 - Em um ambiente aberto, as suas dúvidas vão contribuir com a comunidade.
 
+.center[
 ### https://discourse.curso-r.com/
+]
+
