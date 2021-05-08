@@ -1,43 +1,47 @@
 library(magrittr)
+library(ggplot2)
 
-# Exercicio 1 -------------------------------------------------------------
+# Exercício 2 -------------------------------------------------------------
 
-wiki_url <- "https://en.wikipedia.org/wiki/List_of_footballers_with_500_or_more_goals"
-arquivo_temp_html <- fs::file_temp("goal_", ext = ".html")
-r_wiki <- httr::GET(wiki_url, httr::write_disk(arquivo_temp_html, TRUE))
+path_excel <- "dados/dados_consultoria.xlsx"
 
-# alternativa 1
-tabela_gols <- r_wiki %>% 
-  xml2::read_html() %>%
-  xml2::xml_find_first("//*[./span[@id='Ranking']]//following-sibling::table") %>%
-  rvest::html_table()
+abas <- readxl::excel_sheets(path_excel)
 
-objetivo <- tabela_gols %>% 
-  janitor::clean_names()
+le_uma_aba <- function(aba) {
+  readxl::read_excel(path_excel, sheet = aba, skip = 1) %>%
+    dplyr::mutate(cidade = aba)
+}
 
-# alternativa 2
-lista_gols <- r_wiki %>% 
-  xml2::read_html() %>% 
-  xml2::as_list()
+indicadores <- purrr::map_dfr(abas, le_uma_aba)
 
-linhas <- lista_gols %>% 
-  # eu achei isso aqui caçando no html do site
-  # /html/body/div[3]/div[3]/div[5]/div[1]/table[2]
-  purrr::pluck("html", "body", 5, 10, 14, 1, 18, "tbody") %>% 
-  purrr::set_names(seq_along(.))
+loc <- readr::locale(decimal_mark = ",")
 
-empilhado <- linhas %>% 
-  # operacao dificil!
-  purrr::map_dfr(~tibble::enframe(as.character(unlist(.x))), .id = "linha") %>% 
-  dplyr::mutate(value = stringr::str_squish(value))
+indicadores_limpo <- indicadores %>%
+  # limpa nomes das colunas
+  janitor::clean_names() %>%
+  dplyr::mutate(
+    # porcentagem de texto para número
+    dplyr::across(
+      dplyr::starts_with("percent_"),
+      readr::parse_number, locale = loc
+    ) / 100,
+    # ano mes para data
+    data = lubridate::ymd(paste0(ano, mes, "01", sep = "-")),
+    # id para texto
+    id = as.character(id)
+  ) %>%
+  # retira "percent", numeros e underlines dos nomes
+  dplyr::rename_with(~stringr::str_remove_all(., "percent|[0-9_]"))
 
-espalhado <- empilhado %>% 
-  tidyr::pivot_wider(
-    names_from = name, values_from = value,
-    names_sep = "_"
-  )
+# Exercício 2 - Sobre os IDs, o cliente informou que deveria ter apenas uma
+# linha para cada trinca (id-ano-mes).
 
+# Por conta de uma inconsistência, poderia acontecer de virem duas ou mais
+# linhas para o mesma trinca (id-ano-mes).
 
-# Exercício (desafio): A partir da base `espalhado`, 
-# escreva um script que chega na base `objetivo`.
+# O correto é ter apenas uma linha apenas. Eles disseram que a linha com o
+# maior valor de agendamento tem mais chance de ser a correta.
 
+# a) retire as duplicatas
+
+# b) quais combinações de id-ano-mês nós temos?

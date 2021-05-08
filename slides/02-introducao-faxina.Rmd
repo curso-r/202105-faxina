@@ -43,7 +43,7 @@ Nesse curso, vamos cobrir algumas bagunças comuns e exemplos práticos de como 
 
 Dados são o subproduto de muitos processos complexos, administrado por várias pessoas que podem fazer (ou não) usos muito diferentes dos mesmos registros.
 
-Isso faz com que os formatos e convenções de armazenamento de dados sejam muito variados, às vezes dificultando chegando a dificultar análises futuras.
+Isso faz com que os formatos e convenções de armazenamento de dados sejam muito variados, às vezes chegando a dificultar análises futuras.
 
 Por isso, a Faxina é praticamente uma constante em qualquer contexto de análise de dados, e isso não se deve **só** a erros ou falhas no processo de armazenamento. 
 
@@ -57,7 +57,7 @@ Bancos de dados são usualmente armazenados em formato relacional (não  _tidy_)
 - Cada variável é uma coluna da tabela. Não existe uma coluna que represente duas variáveis, por exemplo. 
 <!--- Cada representação da **visão principal** da tabela está em uma única célula. -->
 
-Essas definições são um interdependentes, a depender do que entendermos por **variável** e **observação**. O que realmente é a filosofia por trás das sugestões.
+Essas definições são interdependentes, a depender do que entendermos por **variável** e **observação**. O que realmente importa é a filosofia por trás das sugestões.
 
 Essa é a definição original proposta anteriormente, mas neste curso vamos considerar algumas propriedades adicionais. Elas não são tão precisas, mas se justificam pela sua grande aplicabilidade:
 
