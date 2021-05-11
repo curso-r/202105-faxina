@@ -67,6 +67,7 @@ versões modificadas do material básico da aula.
 | 07-lista-xml.R               | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/07-lista-xml.R>               |
 | 08-consultoria-continuacao.R | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/08-consultoria-continuacao.R> |
 | 09-csv-comparacoes.R         | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/09-csv-comparacoes.R>         |
+| 10-dados-grandes.R           | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/10-dados-grandes.R>           |
 
 ## Lição de casa
 
@@ -86,26 +87,36 @@ versões modificadas do material básico da aula.
 
 Referências extras comentadas nas aulas.
 
-| Aula | Tema        | Descrição                                                                             |
-|-----:|:------------|:--------------------------------------------------------------------------------------|
-|    0 | organizacao | [Pacote targets para organização de projetos](https://docs.ropensci.org/targets/)     |
-|    0 | organizacao | [Livro sobre pacote targets](https://docs.ropensci.org/targets/)                      |
-|    0 | organizacao | [Pacote drake (que foi substituído pelo targets)](https://docs.ropensci.org/targets/) |
-|    0 | janitor     | [Pacote janitor no livro da curso-r](https://docs.ropensci.org/targets/)              |
-|    1 | organizacao | [Slides de pacotes](https://docs.ropensci.org/targets/)                               |
-|    1 | organizacao | [Livro Zen do R](https://docs.ropensci.org/targets/)                                  |
-|    1 | organizacao | [Livro R Packages](https://docs.ropensci.org/targets/)                                |
-|    1 | leitura     | [Tentar achar o encoding](https://docs.ropensci.org/targets/)                         |
-|    1 | exemplo     | [Exemplo de pacote](https://docs.ropensci.org/targets/)                               |
+| Aula | Tema        | Descrição                                                                                                           |
+|-----:|:------------|:--------------------------------------------------------------------------------------------------------------------|
+|    0 | organizacao | [Pacote targets para organização de projetos](https://docs.ropensci.org/targets/)                                   |
+|    0 | organizacao | [Livro sobre pacote targets](https://books.ropensci.org/targets/)                                                   |
+|    0 | organizacao | [Pacote drake (que foi substituído pelo targets)](https://docs.ropensci.org/drake/)                                 |
+|    0 | janitor     | [Pacote janitor no livro da curso-r](https://livro.curso-r.com/11-1-arrumando-banco-de-dados-o-pacote-janitor.html) |
+|    1 | organizacao | [Slides de pacotes](https://curso-r.github.io/main-pacotes/slides/index.html)                                       |
+|    1 | organizacao | [Livro Zen do R](https://curso-r.github.io/zen-do-r/)                                                               |
+|    1 | organizacao | [Livro R Packages](https://r-pkgs.org/)                                                                             |
+|    1 | leitura     | [Tentar achar o encoding](https://readr.tidyverse.org/reference/encoding.html)                                      |
+|    1 | exemplo     | [Exemplo de pacote](https://github.com/jtrecenti/vacinaBrasil)                                                      |
 
 ## Dados
 
-| nome                                               | link                                                                                                  |
-|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------|
-| dados\_consultoria.xlsx                            | <https://curso-r.github.io/202105-faxina/dados/dados_consultoria.xlsx>                                |
-| DadosBO\_2021\_3(ROUBO DE CELULAR).xls             | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20CELULAR).xls>              |
-| DadosBO\_2021\_3(ROUBO DE VEÍCULOS))\_completa.xls | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%CDCULOS))_completa.xls> |
-| DadosBO\_2021\_3(ROUBO DE VEÍCULOS).xls            | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%CDCULOS).xls>           |
+| nome                                                                      | link                                                                                                               |
+|:--------------------------------------------------------------------------|:-------------------------------------------------------------------------------------------------------------------|
+| csv\_dados\_qsa\_cnpj\_23-11-20.zip                                       | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20.zip>                                    |
+| csv\_dados\_qsa\_cnpj\_23-11-20/cnpj\_dados\_cadastrais\_pj.csv           | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/cnpj_dados_cadastrais_pj.csv>           |
+| csv\_dados\_qsa\_cnpj\_23-11-20/cnpj\_dados\_cnae\_secundario.csv         | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/cnpj_dados_cnae_secundario.csv>         |
+| csv\_dados\_qsa\_cnpj\_23-11-20/cnpj\_dados\_socios\_pj.csv               | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/cnpj_dados_socios_pj.csv>               |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_cnae.csv                             | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_cnae.csv>                           |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_cnpj\_entes\_publicos.csv            | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_cnpj_entes_publicos.csv>            |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_codigo\_municipios\_siafi.csv        | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_codigo_municipios_siafi.csv>        |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_natureza\_juridica.csv               | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_natureza_juridica.csv>              |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_qualificacao\_responsavel\_socio.csv | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_qualificacao_responsavel_socio.csv> |
+| csv\_dados\_qsa\_cnpj\_23-11-20/tab\_situacao\_cadastral.csv              | <https://curso-r.github.io/202105-faxina/dados/csv_dados_qsa_cnpj_23-11-20/tab_situacao_cadastral.csv>             |
+| dados\_consultoria.xlsx                                                   | <https://curso-r.github.io/202105-faxina/dados/dados_consultoria.xlsx>                                             |
+| DadosBO\_2021\_3(ROUBO DE CELULAR).xls                                    | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20CELULAR).xls>                           |
+| DadosBO\_2021\_3(ROUBO DE VEÍCULOS).xls                                   | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS).xls>                     |
+| DadosBO\_2021\_3(ROUBO DE VEÍCULOS))\_completa.xls                        | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS))_completa.xls>           |
 
 ## Redes sociais da Curso-R
 

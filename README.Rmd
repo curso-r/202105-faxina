@@ -101,7 +101,7 @@ googlesheets4::gs4_deauth()
   googledrive::as_id() %>% 
   googlesheets4::read_sheet(turma) %>%
   dplyr::filter(aula <= num_aula) %>% 
-  dplyr::mutate(link = glue::glue("[{desc}]({utils::URLencode(url)})")) %>%
+  dplyr::mutate(link = glue::glue("[{desc}]({purrr::map_chr(url, utils::URLencode)})")) %>%
   dplyr::select(-desc, -url) %>%
   dplyr::arrange(aula) %>% 
   knitr::kable(col.names = c("Aula", "Tema", "Descrição"))
