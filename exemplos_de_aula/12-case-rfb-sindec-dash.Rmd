@@ -1,0 +1,117 @@
+---
+title: "Dashboard RFB Sindec"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: fill
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(sf)
+library(magrittr)
+
+knitr::opts_chunk$set(echo=FALSE)
+
+atendimento_uf <- readr::read_rds("../dados/case/atendimento_uf.rds")
+contagem_sexo_faixa <- readr::read_rds("../dados/case/contagem_sexo_faixa.rds")
+contagem_tema <- readr::read_rds("../dados/case/contagem_tema.rds")
+da_sindec_empresas_arrumado <- readr::read_rds("../dados/case/da_sindec_empresas_arrumado.rds")
+dados_rfb <- readr::read_rds("../dados/case/dados_rfb.rds")
+map_uf <- readr::read_rds("../dados/case/map_uf.rds")
+
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Faixa Etária e Sexo
+
+```{r}
+
+gg_sexo_faixa <- contagem_sexo_faixa %>% 
+  dplyr::mutate(
+    faixa = forcats::fct_rev(faixa),
+    faixa = forcats::fct_explicit_na(faixa, "(Vazio)")
+  ) %>% 
+  ggplot2::ggplot(ggplot2::aes(n, faixa, fill = sexo)) +
+  ggplot2::geom_col(position = "dodge")
+
+gg_sexo_faixa +
+  ggplot2::theme_minimal(12) +
+  ggplot2::labs(
+    x = "Quantidade", y = "Faixa etária",
+    fill = "Sexo"
+  )
+
+```
+
+### % Atendimento por UF
+
+```{r}
+
+gg_mapa <- map_uf %>% 
+  dplyr::left_join(atendimento_uf, c("abbrev_state" = "uf")) %>% 
+  ggplot2::ggplot() +
+  ggplot2::geom_sf(ggplot2::aes(fill = p_atendida), colour = "black", size = .2)
+
+gg_mapa +
+  ggplot2::scale_fill_viridis_c(
+    begin = .2, end = .8, option = "A", labels = scales::percent
+  ) +
+  ggplot2::theme_void() +
+  ggplot2::labs(fill = "Proporção de\natendimentos")
+
+```
+
+Column {data-width=500}
+-----------------------------------------------------------------------
+
+### Temas mais frequentes
+
+```{r}
+gg_tema <- contagem_tema %>% 
+  dplyr::mutate(
+    tema = forcats::fct_reorder(tema, n),
+    tema = forcats::fct_relevel(tema, "Outros", after = 0L)
+  ) %>% 
+  ggplot2::ggplot(ggplot2::aes(n, tema)) +
+  ggplot2::geom_col(fill = "royalblue")
+
+gg_tema +
+  ggplot2::theme_minimal(12) +
+  ggplot2::labs(
+    x = "Quantidade",
+    y = "Tema"
+  )
+```
+
+### % Atendimento por natureza
+
+```{r}
+da_sindec_empresas_arrumado %>% 
+  dplyr::inner_join(
+    dplyr::select(dados_rfb, cnpj, codigo_natureza_juridica), 
+    "cnpj"
+  ) %>% 
+  dplyr::mutate(codigo_natureza_juridica = as.character(codigo_natureza_juridica)) %>% 
+  dplyr::inner_join(
+    qsacnpj::tab_natureza_juridica,
+    c("codigo_natureza_juridica" = "cod_subclass_natureza_juridica")
+  ) %>% 
+  dplyr::group_by(nm_subclass_natureza_juridica) %>% 
+  dplyr::summarise(
+    n = dplyr::n(),
+    p_atendida = mean(atendida == "S")
+  ) %>% 
+  dplyr::filter(n > 10) %>% 
+  dplyr::arrange(dplyr::desc(p_atendida)) %>% 
+  reactable::reactable(list(
+    nm_subclass_natureza_juridica = reactable::colDef("Natureza Jurídica"),
+    p_atendida = reactable::colDef(
+      "% Atendida", 
+      format = reactable::colFormat(percent = TRUE, digits = 1)
+    )
+  ))
+```
+

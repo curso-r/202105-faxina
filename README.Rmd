@@ -85,7 +85,39 @@ tibble::tibble(
 
 ## Trabalho final
 
-(em breve)
+O trabalho final consiste em construir um projeto em R que utiliza os conceitos que aprendemos no curso, partindo de uma base de dados untidy como entrada e apresentando um (ou mais) scripts que a entrada em uma base __tidy__.
+
+Com o objetivo de tornar o trabalho mais divertido e útil para a comunidade, de preferência, use uma base de dados que esteja pública (que possa ser acessada por qualquer pessoa, sem restrição). Você pode, por exemplo, escolher uma fonte de dados que você tem interesse em trabalhar. Se não tiver ideia do que escolher, seguem algumas sugestões:
+
+- [Algum dos microdados do IDEB](https://www.gov.br/inep/pt-br/acesso-a-informacao/dados-abertos/microdados) 
+- [Dados de ocupação hospitalar](https://opendatasus.saude.gov.br/dataset/registro-de-ocupacao-hospitalar/resource/f9391f7c-9775-4fac-a3ce-bf384e2674c2)
+- [Alguma das bases disponíveis na SSP](http://www.ssp.sp.gov.br/transparenciassp/Consulta.aspx) que não tenham sido trabalhadas no curso. 
+
+__O que devo entregar?__
+
+Uma pasta contendo três itens:
+
+- A base de dados em formato bruto OU um script de acesso a essa base, fazendo um download por exemplo. Esse segundo caso só deve ser usado caso a base que você pretenda utilizar ultrapasse __50 MB__. Caso você queira usar uma base maior, pedimos que ela __1 GB__.
+
+- Um ou mais scripts R que transformem a sua base bruta e untidy em uma (ou mais) base(s) tidy. O(s) seu(s) script(s) deve(m) necessariamente:
+  - Ler os dados brutos;
+  - Manipular uma coluna do tipo texto;
+  - Salvar uma base de dados ao final do script que esteja no formato tidy "aumentado" que apresentamos no começo do curso, no formato `.rds`.
+
+- Um arquivo Rmarkdown (.Rmd) contendo uma descrição do que foi feito e uma análise simples da base tidy (por exemplo, um gráfico). Não faça a leitura dos arquivos brutos nesse documento.
+    - __Obs__: Se você não se sentir confortável com o formato `RMarkdown`, pode mandar um arquivo `.docx` (editado no Microsoft Word), um arquivo `.txt`, ou comentários (bem detalhados) nos script(s) `.R` enviado(s).
+
+__O que é importante conter na descrição do que foi feito?__
+
+- Uma introdução, que consiste num texto descrevendo o que o seu código fará, respondendo no mínimo três perguntas: Por que a base pode ser considerada untidy? Como você organizou os seus arquivos pra transforma-la em uma base tidy? Que tipo de análise a sua base tidy possibilita? 
+
+A entrega pode ser feita anexando a pasta `.zip`, ou então enviando um link da pasta no Google Drive (atenção: permita que qualquer pessoa possa ler os arquivos).
+
+As pessoas que fizerem os três trabalhos mais legais receberão __bolsas da Curso-R__! 
+
+__Observação__: Caso você entregue o trabalho, entendemos que concorda em apresentar um link para o seu trabalho na página do curso. Caso você não se sinta confortável com essa possibilidade, pedimos que nos avise no momento da entrega através dos comentários.
+
+A __data limite__ de entrega é 24/06/2021, às 23:59. Os resultados serão avaliados até o dia 25/07/2021.
 
 ## Trabalhos finais premiados
 
@@ -106,7 +138,6 @@ googlesheets4::gs4_deauth()
   dplyr::arrange(aula) %>% 
   knitr::kable(col.names = c("Aula", "Tema", "Descrição"))
 ```
-
 
 ## Dados
 
