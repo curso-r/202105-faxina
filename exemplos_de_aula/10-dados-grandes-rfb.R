@@ -8,6 +8,9 @@ library(magrittr)
 
 path <- "dados/csv_dados_qsa_cnpj_23-11-20/cnpj_dados_cadastrais_pj.csv"
 
+## se você tiver menos de 8GB RAM, sugerimos testar com um arquivo menor
+# path <- "dados/dados_rfb_small.csv"
+
 ## nosso objetivo é contar quantas empresas temos por UF e situacao cadastral.
 ## esse problema faz parte da classe de problemas de "big data" que na verdade
 ## são vários problemas de "small data" consecutivos
@@ -60,7 +63,12 @@ sumarizar_2args <- function(dados, pos) {
     dplyr::count(situacao_cadastral, uf)
 }
 
-callback_2args <- readr::DataFrameCallback$new(sumarizar_2args)
+my_sample <- function(dados, pos) {
+  dados %>% 
+    dplyr::sample_n(100)
+}
+
+callback_2args <- readr::DataFrameCallback$new(my_sample)
 
 dados_chunked <- readr::read_delim_chunked(
   path, 

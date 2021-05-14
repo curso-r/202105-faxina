@@ -68,7 +68,6 @@ versões modificadas do material básico da aula.
 | 08-consultoria-continuacao.R | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/08-consultoria-continuacao.R> |
 | 09-csv-comparacoes.R         | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/09-csv-comparacoes.R>         |
 | 10-dados-grandes-rfb.R       | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/10-dados-grandes-rfb.R>       |
-| 10-dados-grandes.R           | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/10-dados-grandes.R>           |
 | 11-case-rfb-sindec.R         | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/11-case-rfb-sindec.R>         |
 | 12-case-rfb-sindec-dash.Rmd  | <https://curso-r.github.io/202105-faxina/exemplos_de_aula/12-case-rfb-sindec-dash.Rmd>  |
 
@@ -183,6 +182,7 @@ Referências extras comentadas nas aulas.
 | case/tab\_nat.rds                                  | <https://curso-r.github.io/202105-faxina/dados/case/tab_nat.rds>                                         |
 | crf2019-dados-abertos/CRF2019 Dados Abertos.csv    | <https://curso-r.github.io/202105-faxina/dados/crf2019-dados-abertos/CRF2019%20Dados%20Abertos.csv>      |
 | dados\_consultoria.xlsx                            | <https://curso-r.github.io/202105-faxina/dados/dados_consultoria.xlsx>                                   |
+| dados\_rfb\_small.csv                              | <https://curso-r.github.io/202105-faxina/dados/dados_rfb_small.csv>                                      |
 | DadosBO\_2021\_3(ROUBO DE CELULAR).xls             | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20CELULAR).xls>                 |
 | DadosBO\_2021\_3(ROUBO DE VEÍCULOS).xls            | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS).xls>           |
 | DadosBO\_2021\_3(ROUBO DE VEÍCULOS))\_completa.xls | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS))_completa.xls> |
