@@ -7,12 +7,16 @@ path_csv_leitos <- "https://s3-sa-east-1.amazonaws.com/ckan.saude.gov.br/Leitos/
 
 # cria arquivo temporario
 arquivo_temporario <- fs::file_temp("leitos_", ext = ".csv")
+
 # baixa arquivo
 httr::GET(
-  path_csv_leitos, 
+  path_csv_leitos,
   httr::write_disk(arquivo_temporario, TRUE),
   httr::progress()
 )
+
+# caso você precise usar o arquivo localmente:
+# arquivo_temporario <- "dados/seu-caminho"
 
 # alternativa 1: readr::read_csv()
 # vantagens: flexível, intuitivo
@@ -53,8 +57,8 @@ tictoc::tic()
 dados <- vroom::vroom(arquivo_temporario)
 tictoc::toc()
 
-# na prática: 
-# 
+# na prática:
+#
 # - use read_csv a menos que você tenha um bom motivo para não usar
 # - estude de forma mais profunda alguma das alternativas e siga com ela
 # - tenha sempre em mente de que existem pelo menos essas três concorrendo
