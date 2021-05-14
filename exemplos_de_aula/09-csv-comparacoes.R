@@ -7,12 +7,16 @@ path_csv_leitos <- "https://s3-sa-east-1.amazonaws.com/ckan.saude.gov.br/Leitos/
 
 # cria arquivo temporario
 arquivo_temporario <- fs::file_temp("leitos_", ext = ".csv")
+
 # baixa arquivo
 httr::GET(
   path_csv_leitos, 
   httr::write_disk(arquivo_temporario, TRUE),
   httr::progress()
 )
+
+# caso você precise usar o arquivo localmente:
+# arquivo_temporario <- "dados/seu-caminho"
 
 # alternativa 1: readr::read_csv()
 # vantagens: flexível, intuitivo
