@@ -76,6 +76,7 @@ versões modificadas do material básico da aula.
 | nome                      | link                                                              |
 |:--------------------------|:------------------------------------------------------------------|
 | exercicios/01-exercicio.R | <https://curso-r.github.io/main-faxina/exercicios/01-exercicio.R> |
+| exercicios/02-exercicio.R | <https://curso-r.github.io/main-faxina/exercicios/02-exercicio.R> |
 
 ## Trabalho final
 
@@ -157,35 +158,39 @@ avaliados até o dia 25/07/2021.
 
 Referências extras comentadas nas aulas.
 
-| Aula | Tema        | Descrição                                                                                                           |
-|-----:|:------------|:--------------------------------------------------------------------------------------------------------------------|
-|    0 | organizacao | [Pacote targets para organização de projetos](https://docs.ropensci.org/targets/)                                   |
-|    0 | organizacao | [Livro sobre pacote targets](https://books.ropensci.org/targets/)                                                   |
-|    0 | organizacao | [Pacote drake (que foi substituído pelo targets)](https://docs.ropensci.org/drake/)                                 |
-|    0 | janitor     | [Pacote janitor no livro da curso-r](https://livro.curso-r.com/11-1-arrumando-banco-de-dados-o-pacote-janitor.html) |
-|    1 | organizacao | [Slides de pacotes](https://curso-r.github.io/main-pacotes/slides/index.html)                                       |
-|    1 | organizacao | [Livro Zen do R](https://curso-r.github.io/zen-do-r/)                                                               |
-|    1 | organizacao | [Livro R Packages](https://r-pkgs.org/)                                                                             |
-|    1 | leitura     | [Tentar achar o encoding](https://readr.tidyverse.org/reference/encoding.html)                                      |
-|    1 | exemplo     | [Exemplo de pacote](https://github.com/jtrecenti/vacinaBrasil)                                                      |
+| Aula | Tema        | Descrição                                                                                                                            |
+|-----:|:------------|:-------------------------------------------------------------------------------------------------------------------------------------|
+|    0 | organizacao | [Pacote targets para organização de projetos](https://docs.ropensci.org/targets/)                                                    |
+|    0 | organizacao | [Livro sobre pacote targets](https://books.ropensci.org/targets/)                                                                    |
+|    0 | organizacao | [Pacote drake (que foi substituído pelo targets)](https://docs.ropensci.org/drake/)                                                  |
+|    0 | janitor     | [Pacote janitor no livro da curso-r](https://livro.curso-r.com/11-1-arrumando-banco-de-dados-o-pacote-janitor.html)                  |
+|    1 | organizacao | [Slides de pacotes](https://curso-r.github.io/main-pacotes/slides/index.html)                                                        |
+|    1 | organizacao | [Livro Zen do R](https://curso-r.github.io/zen-do-r/)                                                                                |
+|    1 | organizacao | [Livro R Packages](https://r-pkgs.org/)                                                                                              |
+|    1 | leitura     | [Tentar achar o encoding](https://readr.tidyverse.org/reference/encoding.html)                                                       |
+|    1 | exemplo     | [Exemplo de pacote](https://github.com/jtrecenti/vacinaBrasil)                                                                       |
+|    1 | leitura     | [Artigo do Hadley sobre Tidy Data](https://www.jstatsoft.org/article/view/v059i10)                                                   |
+|    2 | exemplo     | [Exemplo de pacote com automação](https://github.com/abjur/falrec)                                                                   |
+|    2 | organizacao | [Exemplo de documentação de dados](https://r-pkgs.org/data.html#documenting-data)                                                    |
+|    2 | leitura     | [Como instalar o rJava](https://cimentadaj.github.io/blog/2018-05-25-installing-rjava-on-windows-10/installing-rjava-on-windows-10/) |
 
 ## Dados
 
-| nome                                               | link                                                                                                     |
-|:---------------------------------------------------|:---------------------------------------------------------------------------------------------------------|
-| case/atendimento\_uf.rds                           | <https://curso-r.github.io/202105-faxina/dados/case/atendimento_uf.rds>                                  |
-| case/contagem\_sexo\_faixa.rds                     | <https://curso-r.github.io/202105-faxina/dados/case/contagem_sexo_faixa.rds>                             |
-| case/contagem\_tema.rds                            | <https://curso-r.github.io/202105-faxina/dados/case/contagem_tema.rds>                                   |
-| case/da\_sindec\_empresas\_arrumado.rds            | <https://curso-r.github.io/202105-faxina/dados/case/da_sindec_empresas_arrumado.rds>                     |
-| case/dados\_rfb.rds                                | <https://curso-r.github.io/202105-faxina/dados/case/dados_rfb.rds>                                       |
-| case/map\_uf.rds                                   | <https://curso-r.github.io/202105-faxina/dados/case/map_uf.rds>                                          |
-| case/tab\_nat.rds                                  | <https://curso-r.github.io/202105-faxina/dados/case/tab_nat.rds>                                         |
-| crf2019-dados-abertos/CRF2019 Dados Abertos.csv    | <https://curso-r.github.io/202105-faxina/dados/crf2019-dados-abertos/CRF2019%20Dados%20Abertos.csv>      |
-| dados\_consultoria.xlsx                            | <https://curso-r.github.io/202105-faxina/dados/dados_consultoria.xlsx>                                   |
-| dados\_rfb\_small.csv                              | <https://curso-r.github.io/202105-faxina/dados/dados_rfb_small.csv>                                      |
-| DadosBO\_2021\_3(ROUBO DE CELULAR).xls             | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20CELULAR).xls>                 |
-| DadosBO\_2021\_3(ROUBO DE VEÍCULOS).xls            | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS).xls>           |
-| DadosBO\_2021\_3(ROUBO DE VEÍCULOS))\_completa.xls | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%C3%8DCULOS))_completa.xls> |
+| nome                                               | link                                                                                                  |
+|:---------------------------------------------------|:------------------------------------------------------------------------------------------------------|
+| case/atendimento\_uf.rds                           | <https://curso-r.github.io/202105-faxina/dados/case/atendimento_uf.rds>                               |
+| case/contagem\_sexo\_faixa.rds                     | <https://curso-r.github.io/202105-faxina/dados/case/contagem_sexo_faixa.rds>                          |
+| case/contagem\_tema.rds                            | <https://curso-r.github.io/202105-faxina/dados/case/contagem_tema.rds>                                |
+| case/da\_sindec\_empresas\_arrumado.rds            | <https://curso-r.github.io/202105-faxina/dados/case/da_sindec_empresas_arrumado.rds>                  |
+| case/dados\_rfb.rds                                | <https://curso-r.github.io/202105-faxina/dados/case/dados_rfb.rds>                                    |
+| case/map\_uf.rds                                   | <https://curso-r.github.io/202105-faxina/dados/case/map_uf.rds>                                       |
+| case/tab\_nat.rds                                  | <https://curso-r.github.io/202105-faxina/dados/case/tab_nat.rds>                                      |
+| crf2019-dados-abertos/CRF2019 Dados Abertos.csv    | <https://curso-r.github.io/202105-faxina/dados/crf2019-dados-abertos/CRF2019%20Dados%20Abertos.csv>   |
+| dados\_consultoria.xlsx                            | <https://curso-r.github.io/202105-faxina/dados/dados_consultoria.xlsx>                                |
+| dados\_rfb\_small.csv                              | <https://curso-r.github.io/202105-faxina/dados/dados_rfb_small.csv>                                   |
+| DadosBO\_2021\_3(ROUBO DE CELULAR).xls             | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20CELULAR).xls>              |
+| DadosBO\_2021\_3(ROUBO DE VEÍCULOS))\_completa.xls | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%CDCULOS))_completa.xls> |
+| DadosBO\_2021\_3(ROUBO DE VEÍCULOS).xls            | <https://curso-r.github.io/202105-faxina/dados/DadosBO_2021_3(ROUBO%20DE%20VE%CDCULOS).xls>           |
 
 ## Redes sociais da Curso-R
 
