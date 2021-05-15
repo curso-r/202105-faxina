@@ -128,7 +128,7 @@ crimes_passo2b <- crimes_passo1 %>%
 ## Opção C - nest: transformar as linhas todas em uma tabela e list-column
 
 crimes_passo2c <- crimes_passo1 %>%
-  dplyr::group_by(num_bo, ano_bo, delegacia_circunscricao) %>%
+  dplyr::group_by(num_bo, ano_bo, delegacia_nome) %>%
   tidyr::nest()
 
 # Construcao da tabela final ----------------------------------------------
