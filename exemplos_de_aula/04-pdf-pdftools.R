@@ -28,6 +28,11 @@ help_pacote <- toc %>%
   purrr::map_chr("title") %>% 
   tibble::enframe()
 
+# equivalente
+toc %>% 
+  purrr::pluck("children", 1, "title")
+toc$children[[1]]$title
+
 help_pacote
 
 # texto por pagina
@@ -38,6 +43,9 @@ cat(texto[1])
 # posicao de cada elemento
 pdftools::pdf_data(path_pdf_digital)[[1]]
 
+
+print("texto texto\n texto")
+cat("texto texto\ntexto")
 
 # PDFs digitalizados ------------------------------------------------------
 

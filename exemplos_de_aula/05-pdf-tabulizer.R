@@ -27,9 +27,36 @@ tabela_pagina1 <- tabulizer::extract_tables(
   output = "data.frame"
 )
 
+## nao ficou legal
+tabela_pagina1_lattice <- tabulizer::extract_tables(
+  path_pdf_tabulizer,
+  pages = 1,
+  method = "lattice", # existem 2, tente os dois para ver qual funciona melhor
+  output = "data.frame"
+)
+
+tabela_pagina1_lattice_tidy <- tabela_pagina1_lattice %>% 
+  purrr::pluck(1) %>% 
+  tibble::rownames_to_column() %>% 
+  tibble::as_tibble() %>% 
+  purrr::set_names(c("nome", "unidade", "data", "grupo")) %>% 
+  dplyr::slice(-1) %>% 
+  dplyr::mutate(data = lubridate::dmy(data))
+
 tabela_pagina1_tidy <- tabela_pagina1 %>% 
-  dplyr::first() %>% 
+  purrr::pluck(1) %>% 
   tibble::as_tibble() %>% 
   purrr::set_names(c("nome", "unidade", "data", "grupo")) %>% 
   dplyr::slice(-c(1:2)) %>% 
   dplyr::mutate(data = lubridate::dmy(data))
+
+
+tabela_pagina1 %>% 
+  purrr::pluck(1) %>% 
+  tibble::as_tibble() %>% 
+  purrr::set_names(c("nome", "unidade", "data", "grupo")) %>% 
+  dplyr::mutate(dplyr::across(dplyr::everything(), dplyr::na_if, "")) %>% 
+  tidyr::fill(nome:grupo, .direction = "updown") %>% 
+  dplyr::slice(-2) %>% 
+  janitor::row_to_names(1) %>% 
+  janitor::clean_names()

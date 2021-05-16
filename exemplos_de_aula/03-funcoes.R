@@ -16,6 +16,7 @@ da <- tibble::tribble(
   10, 10, NA,
   NA, NA, NA
 )
+janitor::remove_empty(da)
 janitor::remove_empty(da, "rows")
 janitor::remove_empty(da, "cols")
 
@@ -29,6 +30,7 @@ da <- tibble::tribble(
   "Fernando", "Professor", 30
 )
 
+janitor::get_dupes(da)
 janitor::get_dupes(da, nome)
 janitor::get_dupes(da, nome, papel)
 
@@ -45,7 +47,14 @@ da_2021 <- tibble::tribble(
   ~ano, ~coluna_nova, ~salario,
   2021, "olar", 10,
 )
-janitor::compare_df_cols(da_2020, da_2021)
+
+janitor::compare_df_cols(da_2020, da_2021) %>% 
+  dplyr::filter(da_2020 != da_2021 | is.na(da_2021) | is.na(da_2020))
+
+da_2020 %>% 
+  dplyr::mutate(ano = as.numeric(ano)) %>% 
+  dplyr::rename(coluna_nova = coluna_velha) %>% 
+  dplyr::bind_rows(da_2021)
 
 # `janitor::adorn_totals()`
 
@@ -60,7 +69,29 @@ sumario <- tibble::tribble(
   "Athos", "Professor", 60, .3,
   "Athos", "Consultor", 80, .4,
 )
-janitor::adorn_totals(sumario, "row")
+
+resultado <- janitor::adorn_totals(sumario, "row") %>% 
+  tibble::as_tibble()
+
+abjData::muni %>% tibble::view()
+
+# m <- lm(cyl ~ disp, data = mtcars)
+# broom::tidy(m)
+
+# ideia louca, mas interessante
+# por democracia, a ideia é util :)
+
+sumario %>% 
+  dplyr::group_by(nome) %>% 
+  tidyr::nest() %>% 
+  dplyr::ungroup() %>% 
+  dplyr::mutate(data = purrr::map(data, janitor::adorn_totals, "row")) %>% 
+  tidyr::unnest(data)
+
+sumario %>% 
+  dplyr::group_by(nome) %>% 
+  tidyr::nest() %>% 
+  dplyr::ungroup()
 
 
 # `{tidyr}` e `{dplyr}` ---------------------------------------------------
@@ -77,7 +108,12 @@ janitor::adorn_totals(sumario, "row")
 
 vetor <- c("julio", "athos", "fernando", "vazio")
 dplyr::na_if(vetor, "vazio")
+dplyr::if_else(vetor %in% c("vazio", "-"), NA_character_, vetor)
 
+# otimista
+ifelse(vetor %in% c("vazio", "-"), NA, vetor)
+# pessimista
+dplyr::if_else(vetor %in% c("vazio", "-"), NA, vetor)
 
 # `tidyr::replace_na()`
 # Preenche `NA`s de um vetor ou de uma base
@@ -96,6 +132,23 @@ da <- tibble::tribble(
 da %>% 
   tidyr::replace_na(list(col1 = "vazio", col2 = "NULL"))
 
+arruma_coluna <- function(.x) {
+  tidyr::replace_na(.x, "vazio")
+}
+
+da %>% 
+  dplyr::mutate(
+    dplyr::across(
+      dplyr::everything(),
+      dplyr::na_if, "Julio"
+    )
+  )
+
+## with()
+# da %>% 
+#   with(table(col1))
+
+# "recipes"
 
 # `dplyr::coalesce()`
 # Pega o primeiro valor não vazio. Útil para joins / correção de base.
@@ -116,12 +169,23 @@ da %>%
 # Preenche `NA`, para baixo ou para cima
 
 da <- tibble::tribble(
-  ~col1, ~col2,
-  NA, "Julio",
-  "Fernando", NA,
-  "Julio", "Caio", # cuidado!
-  NA, NA
+  ~id, ~col1, ~col2,
+  1, NA, "Julio",
+  1, "Fernando", NA,
+  2, NA, NA,
+  2, "Julio", "Caio", # cuidado!
+  2, NA, NA
 )
+
+da %>% 
+  dplyr::group_by(id) %>% 
+  tidyr::fill(col1, col2, .direction = "updown") %>% 
+  dplyr::ungroup()
+
+da %>% 
+  tidyr::fill(col1, col2)
+
+
 da %>% 
   tidyr::fill(col1, col2)
 
@@ -170,6 +234,9 @@ da <- tibble::tibble(
   coluna_tabela = tibble::tibble(a = c(3, 4), b = c(5, 6))
 )
 da
+
+str(da)
+print(da)
 names(da)
 tidyr::unnest(da, coluna_tabela)
 
@@ -180,8 +247,10 @@ da <- tibble::tibble(
     tibble::tibble(a = c(4), b = c(6))
   )
 )
-da
+str(da)
 tidyr::unnest(da, coluna_tabela)
+
+tibble::view(da)
 
 # `dplyr::anti_join()`
 # Mostra as linhas da base da esquerda que não estão na base da direita. 
@@ -206,7 +275,9 @@ da1 %>%
 da1 %>% 
   dplyr::mutate(municipio = dplyr::case_when(
     municipio == "Mogi" ~ "Mogi-Mirim",
+    # ...
     TRUE ~ municipio
   )) %>% 
   dplyr::anti_join(da2, "municipio")
-  
+
+abjutils::rm_accent("ááá")

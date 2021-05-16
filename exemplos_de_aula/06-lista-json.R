@@ -28,7 +28,8 @@ json_poke_df <- jsonlite::fromJSON(texto_json, simplifyDataFrame = TRUE)
 
 # veja que essa coluna stat está estranha
 json_poke_df$stats %>% 
-  tibble::as_tibble()
+  tibble::as_tibble() %>% 
+  str()
 
 # investigando o objeto, observamos que uma das colunas é uma tabela
 json_poke_df$stats$stat
@@ -48,7 +49,7 @@ json_poke %>%
 json_poke_df %>% 
   purrr::pluck("stats") %>% 
   tibble::as_tibble() %>% 
-  tidyr::chop(stat) %>% 
+  tidyr::chop(stat) %>%
   tidyr::unnest(stat)
 
 # obs: nem sempre é tão fácil!
