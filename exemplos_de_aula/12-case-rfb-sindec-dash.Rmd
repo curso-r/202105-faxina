@@ -19,6 +19,7 @@ contagem_tema <- readr::read_rds("../dados/case/contagem_tema.rds")
 da_sindec_empresas_arrumado <- readr::read_rds("../dados/case/da_sindec_empresas_arrumado.rds")
 dados_rfb <- readr::read_rds("../dados/case/dados_rfb.rds")
 map_uf <- readr::read_rds("../dados/case/map_uf.rds")
+tab_natureza_juridica <- readr::read_rds("../dados/case/tab_nat.rds")
 
 ```
 
@@ -96,7 +97,7 @@ da_sindec_empresas_arrumado %>%
   ) %>% 
   dplyr::mutate(codigo_natureza_juridica = as.character(codigo_natureza_juridica)) %>% 
   dplyr::inner_join(
-    qsacnpj::tab_natureza_juridica,
+    tab_natureza_juridica,
     c("codigo_natureza_juridica" = "cod_subclass_natureza_juridica")
   ) %>% 
   dplyr::group_by(nm_subclass_natureza_juridica) %>% 
