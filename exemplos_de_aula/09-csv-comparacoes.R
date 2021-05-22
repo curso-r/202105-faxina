@@ -39,7 +39,6 @@ dados <- arrow::read_csv_arrow(arquivo_temporario)
 # desvantagens: não lê os dados de verdade, você paga o preço depois
 dados <- vroom::vroom(arquivo_temporario)
 
-
 # comparação naive (não é um benchmark!)
 tictoc::tic()
 dados <- readr::read_csv(arquivo_temporario)

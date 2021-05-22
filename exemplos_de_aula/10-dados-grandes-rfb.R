@@ -9,7 +9,7 @@ library(magrittr)
 path <- "dados/csv_dados_qsa_cnpj_23-11-20/cnpj_dados_cadastrais_pj.csv"
 
 ## se você tiver menos de 8GB RAM, sugerimos testar com um arquivo menor
-# path <- "dados/dados_rfb_small.csv"
+path_pequeno <- "dados/dados_rfb_small.csv"
 
 ## nosso objetivo é contar quantas empresas temos por UF e situacao cadastral.
 ## esse problema faz parte da classe de problemas de "big data" que na verdade
@@ -34,6 +34,7 @@ dados <- readr::read_delim(path, delim = "#", n_max = 10000, guess_max = 10000)
 
 dados %>%
   dplyr::count(situacao_cadastral, uf)
+
 # obs: de 10 mil foi pra 77 linhas
 
 # vamos colocar isso em uma função:
@@ -61,17 +62,28 @@ dados_chunked_fail <- readr::read_delim_chunked(
 
 sumarizar_2args <- function(dados, pos) {
   dados %>%
-    dplyr::count(situacao_cadastral, uf)
+    dplyr::count(situacao_cadastral, uf) %>%
+    dplyr::mutate(
+      chunk = pos
+    )
 }
 
 callback_2args <- readr::DataFrameCallback$new(sumarizar_2args)
 
 dados_chunked <- readr::read_delim_chunked(
-  path,
+  path_pequeno,
   delim = "#",
   callback_2args,
   guess_max = 10000
 )
+
+# por trás:
+
+# separa a base em K pedaços cada um com 10.000 linhas.
+
+# pra cada pedaço o callback_2args é invocado e faz o seguinte:
+# aplica sumarizar_2args(pedaco, posicao_da_primeira_linh)
+# salva o resultado
 
 # legal! agora preciso sumarizar para obter as contagens finais
 
@@ -85,15 +97,34 @@ resultado <- dados_chunked %>%
   dplyr::tally(n) %>%
   dplyr::ungroup()
 
+#dados_chunked %>% count(uf, situacao_cadastral)
+#
+## é equivalente a
+#
+#dados_chunked %>%
+#  group_by(uf, situacao_cadastral) %>%
+#  summarise(n = n())
+#
+## já o tally
+#dados_chunked
+#group_by(uf, situacao_cadastral) %>%
+#  tally(peso)
+#
+## é equivalente
+#
+#dados_chunked %>%
+#  mutate(contador = 1) %>%
+#  group_by(uf, situacao_cadastral) %>%
+#  summarise(n = sum(contador*peso))
+
 # alternativa 2: usando vroom ---------------------------------------------
 
 ## quer ter mais controle sobre o que você está fazendo?
 ## codigo adaptado daqui: https://github.com/jtrecenti/vacinaBrasil/blob/master/data-raw/datasus.R
 
-
-n_rows <- length(vroom::vroom_lines(path)) - 1L
+n_rows <- length(vroom::vroom_lines(path_pequeno)) - 1L
 # tamanho de cada chunk (1 milhao)
-chunk_size <- 1e6
+chunk_size <- 1e4
 # quantos chunks?
 n_chunks <- ceiling(n_rows / chunk_size)
 # vetor de pulos
@@ -135,7 +166,7 @@ sumarizar_vroom <- function(skip, path, chunk_size, colunas_spec, colunas) {
 dados_chunked <- purrr::map_dfr(
   skips,
   sumarizar_vroom,
-  path,
+  path_pequeno,
   chunk_size,
   colunas_spec,
   colunas

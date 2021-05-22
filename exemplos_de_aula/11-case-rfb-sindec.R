@@ -7,6 +7,8 @@ library(magrittr)
 
 path <- "dados/crf2019-dados-abertos/CRF2019 Dados Abertos.csv"
 
+readr::read_lines(path, n_max = 10)
+
 # claro que vai dar problema
 da_sindec <- readr::read_csv2(path)
 
@@ -35,8 +37,7 @@ da_sindec <- linhas %>%
   janitor::clean_names()
 
 da_sindec %>%
-  dplyr::slice(problemas$row + 1) %>% View
-
+  dplyr::slice(problemas$row) %>% View
 
 # tidy --------------------------------------------------------------------
 
